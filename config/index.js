@@ -24,6 +24,8 @@ module.exports = (app) => {
 
 
   const session = require('express-session')
+  const MongoStore = require('connect-mongo')
+
 
 
   // To have access to `body` property in the request
