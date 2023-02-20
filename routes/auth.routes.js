@@ -23,7 +23,35 @@ router.get('/signup', (req, res, next) => {
 })
 
 // LISTEN FOR A POST FORM ON THE 'LOGIN' ROUTE
-
+router.post('/login', async (req, res, next) => {
+    const { useername, password } = req.body
+    try {
+        if (!username || password) {
+            return res.render('auth/login', {
+                errorMessage: 'Please fill out all of the fields',
+            })
+        }
+        const foundUser = await User.findOne(
+            { username },
+            { password: 1, username: 1 }
+        )
+        if (!foundUser) {
+            return res.render('auth/login', {
+                errorMessage: 'Please sign up first'
+            })
+        }
+        const matchingPassword = await bcrypt.compare(password, foundUser.password)
+        if (!matchingPassword) {
+            return res.render('auth/login', {
+                errorMessage: 'invalid username or password'
+            })
+        }
+        req.session.currentUser = foundUser
+        res.redirect('/profile')
+    } catch (err) {
+        next(err)
+    }
+})
 
 
 // LISTEN FOR A POST FORM ON THE 'SIGN UP' ROUTE
