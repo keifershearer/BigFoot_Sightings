@@ -35,9 +35,9 @@ router.post('/create-sighting', async (req, res, next) => {
 
         // ACCES INFORMATION USER JUST PROVIDE IN THE FORM
         const { location, description, date, owner } = req.body
+
         // CREATE THE SIGHTING WIHT THE INFORMATION WITH JUST ACCESS
         const newSighting = await Sighting.create({ location, description, date, owner })
-
         res.redirect('/sightings')
     } catch (err) {
         next(err)
