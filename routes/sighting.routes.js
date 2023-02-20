@@ -49,7 +49,7 @@ router.post('/create-sighting', async (req, res, next) => {
 // RENDER A SPECIFIC SIGHTING ———> WITH ID
 router.get('/:sightingId', async (req, res, next) => {
     try {
-        const thisSighting = await Sighting.findOneById(req.params.sightingId)
+        const thisSighting = await Sighting.findById(req.params.sightingId)
         res.render('sighting/sighting-details', { thisSighting })
     } catch (err) {
         next(err)
