@@ -4,10 +4,13 @@ const Sighting = require('../models/Sighting.model')
 
 
 
-// RENDER ALL SIGHTINGS PAGE
+// RENDER ALL SIGHTINGS PAGE ———————————————————————————————————————————————————————————————————————————————————
 router.get('/sightings', async (req, res, next) => {
     try {
+
+        // DISPLAY ALL THE SIGHTING AND RENDER THE PAGE
         const allSightings = await Sighting.find()
+
         res.render('sighting/sightings', { allSightings })
     } catch (err) {
         next(err)
@@ -16,7 +19,7 @@ router.get('/sightings', async (req, res, next) => {
 
 
 
-// RENDER PAGE FOR CREATE A SIGHTING
+// RENDER PAGE FOR CREATE A SIGHTING ———————————————————————————————————————————————————————————————————————————
 router.get('/create-sighting', async (req, res, next) => {
     try {
         res.render('sighting/create-sighting')
@@ -26,37 +29,39 @@ router.get('/create-sighting', async (req, res, next) => {
 })
 
 
-// LISTEN FOR A FORM ON THE CREATE SIGHTING PAGE 
+// LISTEN FOR A FORM ON THE CREATE SIGHTING PAGE  ——————————————————————————————————————————————————————————————————
 router.post('/create-sighting', async (req, res, next) => {
     try {
+
+        // ACCES INFORMATION USER JUST PROVIDE IN THE FORM
         const { location, description, date, owner } = req.body
+        // CREATE THE SIGHTING WIHT THE INFORMATION WITH JUST ACCESS
         const newSighting = await Sighting.create({ location, description, date, owner })
-        console.log(newSighting)
+
         res.redirect('/sightings')
     } catch (err) {
         next(err)
     }
 })
 
-// ————————————————————————————————————————————————> ACCES INFORMATION USER JUST PROVIDE WITH req.body
-// ————————————————————————————————————————————————> CREATE THE SIGHTING WIHT      Sighting.create()
-// ————————————————————————————————————————————————> REDIRECT TO ALL THE SIGHTINGS
 
 
 
 
 
-// RENDER A SPECIFIC SIGHTING ———> WITH ID
+// RENDER A SPECIFIC SIGHTING WITH THE PROVIDED ID IN THE URL ———————————————————————————————————————————————————
 router.get('/:sightingId', async (req, res, next) => {
     try {
+
+        // GET THE ID PROVIDED IN THE URL AND FIND THE CORRESPONDING SIGHTING
         const thisSighting = await Sighting.findById(req.params.sightingId)
+
         res.render('sighting/sighting-details', { thisSighting })
     } catch (err) {
         next(err)
     }
 })
-// —————————————————————————————————————————————————> RENDER THE VIEW WITH  req.params.id
-// —————————————————————————————————————————————————> RENDER THE PAGE
+
 
 
 
