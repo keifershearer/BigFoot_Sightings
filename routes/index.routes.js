@@ -20,7 +20,7 @@ router.use('/sighting', require('./sighting.routes'))
 
 
 // LINK TO THE PROFILE FILE
-router.use('/profile', require(''))
+//router.use('/profile', require(''))
 
 
 

@@ -24,7 +24,7 @@ router.get('/signup', (req, res, next) => {
 
 // LISTEN FOR A POST FORM ON THE 'LOGIN' ROUTE
 router.post('/login', async (req, res, next) => {
-    const { useername, password } = req.body
+    const { username, password } = req.body
     try {
         if (!username || password) {
             return res.render('auth/login', {
@@ -55,7 +55,7 @@ router.post('/login', async (req, res, next) => {
 
 
 // LISTEN FOR A POST FORM ON THE 'SIGN UP' ROUTE
-router.post('/signup', async (res, res, next) => {
+router.post('/signup', async (req, res, next) => {
     const { password, username } = req.body
     try {
         if (!username || !password) {
@@ -77,6 +77,7 @@ router.post('/signup', async (res, res, next) => {
         const userFromDb = await User.create(userToCreate);
         res.redirect('/login')
     } catch (err) {
+        next(err)
     }
 })
 
