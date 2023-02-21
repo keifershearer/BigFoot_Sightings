@@ -64,7 +64,7 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
     }
 })
 
-
+// RENDER A 
 
 
 
