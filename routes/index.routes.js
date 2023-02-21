@@ -12,15 +12,15 @@ router.get("/", (req, res, next) => {
 
 
 // LINK TO THE AUTH FILE 
-router.use('/auth', require('./auth.routes'))
+router.use('/', require('./auth.routes'))
 
 
 // LINK TO THE SIGHTING FILE
-router.use('/sighting', require('./sighting.routes'))
+router.use('/', require('./sighting.routes'))
 
 
 // LINK TO THE PROFILE FILE
-router.use('/profile', require(''))
+//router.use('/profile', require(''))
 
 
 

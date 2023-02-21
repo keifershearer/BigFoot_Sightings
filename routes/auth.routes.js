@@ -24,7 +24,7 @@ router.get('/signup', (req, res, next) => {
 
 // LISTEN FOR A POST FORM ON THE 'LOGIN' ROUTE
 router.post('/login', async (req, res, next) => {
-    const { useername, password } = req.body
+    const { username, password } = req.body
     try {
         if (!username || password) {
             return res.render('auth/login', {
@@ -55,6 +55,33 @@ router.post('/login', async (req, res, next) => {
 
 
 // LISTEN FOR A POST FORM ON THE 'SIGN UP' ROUTE
+router.post('/signup', async (req, res, next) => {
+    const { password, username } = req.body
+    try {
+        if (!username || !password) {
+            return res.render('auth/signup', {
+                errorMessage: "Please fill out all of the fields!",
+            })
+        }
+        if (password.lenght < 4) {
+            return res.render('auth/signup', {
+                errorMessage: "Please put a longer pasword",
+            })
+        }
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt)
+        const userToCreate = {
+            username,
+            password: hashedPassword,
+        }
+        const userFromDb = await User.create(userToCreate);
+        res.redirect('/login')
+    } catch (err) {
+        next(err)
+    }
+})
+
+
 
 
 module.exports = router;
