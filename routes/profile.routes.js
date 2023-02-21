@@ -10,7 +10,7 @@ const User = require('../models/User.model')
 router.get('/:profileId', async (req, res, next) => {
     try {
         console.log(req.params);
-        const user = await User.findById(req.params.profileId)
+        const user = await User.findById(req.params.profileId).populate('userSightings')
         res.render('profile', { user })
     } catch (err) {
         console.log(err)
