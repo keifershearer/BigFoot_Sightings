@@ -8,13 +8,14 @@ require("./db");
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require("express");
-
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
-
+const path = require('path')
 const app = express();
 
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'))
+app.use(express.static(path.join(__dirname, 'public')))
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 app.use(require('./middleware/exposeUserToView'));
