@@ -1,1 +1,17 @@
-<h1>{{user.username}} Profile</h1>
+<h1>{{user.username}}'s Profile</h1>
+
+<section class="profile-section-sightings">
+
+{{#each sightings}}
+
+<div class="card">
+    {{!-- <picture></picture> --}}
+    <h4 class="location">{{location}}</h4>
+    <p class="profil-date-sightings">{{date}}</p>
+    <p class="profil-description-sightings">{{description}}</p>
+</div>
+
+
+{{/each}}
+
+</section>

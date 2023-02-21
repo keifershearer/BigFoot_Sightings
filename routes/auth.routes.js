@@ -26,7 +26,7 @@ router.get('/signup', (req, res, next) => {
 router.post('/login', async (req, res, next) => {
     const { username, password } = req.body
     try {
-        if (!username || password) {
+        if (!username || !password) {
             return res.render('auth/login', {
                 errorMessage: 'Please fill out all of the fields',
             })
@@ -79,6 +79,15 @@ router.post('/signup', async (req, res, next) => {
     } catch (err) {
         next(err)
     }
+})
+
+router.get('/logout', (req, res, next) => {
+    req.session.destroy((error) => {
+        if (error) {
+            return next(err)
+        }
+        res.redirect('/login')
+    })
 })
 
 
