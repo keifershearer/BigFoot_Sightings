@@ -6,7 +6,11 @@ const User = require('../models/User.model')
 
 
 // RENDER PROFILE PAGE —————>  /
+router.get('/:profileId', async (res, req, next) => {
 
+    const user = await User.findById(req.params.profileId)
+    res.render('profile', { user })
+})
 
 
 
