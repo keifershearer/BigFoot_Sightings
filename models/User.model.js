@@ -13,10 +13,7 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    userSightings: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Sighting'
-    }]
+
   },
   {
 

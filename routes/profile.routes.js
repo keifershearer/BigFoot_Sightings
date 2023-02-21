@@ -5,19 +5,29 @@ const User = require('../models/User.model')
 //const isLogin = require('./../middleware/isLogin')
 
 
-
 // RENDER PROFILE PAGE —————>  /
+router.get('/', async (req, res, next) => {
+    try {
+        const sightings = await Sighting.find({ owner: req.session.currentUser._id })
+        const user = req.session.currentUser
+        res.render('profile', { user, sightings })
+
+    } catch (error) {
+        next(err)
+    }
+})
+
+
 router.get('/:profileId', async (req, res, next) => {
     try {
-        console.log(req.params);
-        const user = await User.findById(req.params.profileId).populate('userSightings')
-        res.render('profile', { user })
+        const user = await User.findById(req.params.profileId)
+        const sightings = await Sighting.find({ owner: user._id })
+        res.render('profile', { user, sightings })
     } catch (err) {
         console.log(err)
     }
-
-
 })
+
 
 
 
