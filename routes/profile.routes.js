@@ -2,13 +2,21 @@ const express = require('express');
 const router = express.Router();
 const Sighting = require('../models/Sighting.model')
 const User = require('../models/User.model')
-const isLogin = require()
+//const isLogin = require('./../middleware/isLogin')
 
 
 
 // RENDER PROFILE PAGE —————>  /
-router.get('/:profileId', isLogin, (res, req, next) => {
-    res.render('profile', { user })
+router.get('/:profileId', async (req, res, next) => {
+    try {
+        console.log(req.params);
+        const user = await User.findById(req.params.profileId)
+        res.render('profile', { user })
+    } catch (err) {
+        console.log(err)
+    }
+
+
 })
 
 
