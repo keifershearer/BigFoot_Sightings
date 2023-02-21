@@ -46,6 +46,8 @@ async function seed() {
         sight.owner = randomUser(createdUsers)
     }
     await Sighting.create(sightings)
+    // erase me if there is a problem
+    await Sighting.create(comments)
 }
 
 function randomUser(array) {

@@ -3,6 +3,7 @@ const exposeUsers = require('../middleware/exposeUserToView');
 const isLogin = require('../middleware/isLogin');
 const router = express.Router();
 const Sighting = require('../models/Sighting.model')
+const Comment = require('../models/Comment.model')
 
 
 
@@ -57,14 +58,15 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
         console.log('in this route');
         // GET THE ID PROVIDED IN THE URL AND FIND THE CORRESPONDING SIGHTING
         const thisSighting = await Sighting.findById(req.params.sightingId)
+        const comments = await Comment.find({ sighting: req.params.sightingId }).populate('author')
 
-        res.render('sighting/sighting-details', { thisSighting })
+        res.render('sighting/sighting-details', { thisSighting, comments })
     } catch (err) {
         next(err)
     }
 })
 
-// RENDER A 
+
 
 
 
