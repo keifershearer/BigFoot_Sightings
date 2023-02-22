@@ -1,10 +1,8 @@
-<form action="/sightings/update/:sightingId" method="post">
+<form action="/sightings/update/{{id}}" method="post">
 <h1>Update your sighting</h1>
 <label for="location">Location:</label>
-<input type="text" name="location">
+<input type="text" name="location" value="{{location}}">
 <label for="description">Description:</label>
-<input type="text" name="description">
-<label for="date" >Date:</label>
-<input type="date" name="date">
-<button>Update Post</button>
+<input type="text" name="description" value="{{description}}">
+<button type="submit">Update Post</button>
 </form>

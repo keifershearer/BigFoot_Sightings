@@ -9,9 +9,9 @@
 <form action="/sightings/delete/{{thisSighting._id}}" method="post">
     <button class="button">Delete</button>
 </form>
-<form action="/sightings/update/{{thisSighting._id}}" method="post">
-    <button class="button">Update</button>
-</form>
+
+    <button class="button"> <a href="/sightings/update/{{thisSighting._id}}">Update</a> </button>
+
 {{/if}}
 
 {{#each comments}}

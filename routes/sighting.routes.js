@@ -73,9 +73,17 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
 
 
 // CREATE THE ROUTE FOR DISPLAYING THE UPDATE FILE TO USER
-router.get('/sightings/update/:sightingId', canEdit, (req, res, next) => {
+router.get('/sightings/update/:sightingId', canEdit, async (req, res, next) => {
     try {
-        res.render('sighting/update-sighting')
+        const thisSighting = await Sighting.findById(req.params.sightingId)
+        const id = thisSighting._id.valueOf()
+        const location = thisSighting.location
+        const description = thisSighting.description
+        const date = thisSighting.date
+
+
+        // find corresponding sighting
+        res.render('sighting/update-sighting', { location, description, date, id })
     } catch (err) {
         next(err)
     }
@@ -83,17 +91,22 @@ router.get('/sightings/update/:sightingId', canEdit, (req, res, next) => {
 
 
 // UPDATE WITH PATCH METHOD _______________________________________________________________________________________
-router.patch('/sightings/update/:sightingId', canEdit, async (req, res, next) => {
+router.post('/sightings/update/:sightingId', async (req, res, next) => {
 
-    const oldSighting = req.params
-    const newSighting = { ...req.body }
+    //const oldSighting = req.params
+    const id = req.params.sightingId
+    const editedSighting = { ...req.body }
+
+    console.log({ id });
+    console.log(editedSighting);
+
 
     try {
-        await User.findByIdAndUpdate(oldSighting, newSighting)
+        await Sighting.findByIdAndUpdate(id, editedSighting, { new: true })
         res.redirect('/sightings')
 
     } catch (error) {
-        next(err)
+        next(error)
     }
 })
 
