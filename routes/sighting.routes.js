@@ -5,6 +5,7 @@ const router = express.Router();
 const Sighting = require('../models/Sighting.model')
 const Comment = require('../models/Comment.model');
 const User = require('../models/User.model');
+const canEdit = require('../middleware/edit');
 
 
 
@@ -36,7 +37,7 @@ router.get('/sightings/create', async (req, res, next) => {
 // LISTEN FOR A FORM ON THE CREATE SIGHTING PAGE  ——————————————————————————————————————————————————————————————————
 router.post('/sightings/create', isLogin, async (req, res, next) => {
     try {
-        console.log(req.session);
+        // console.log(req.session);
         // ACCES INFORMATION USER JUST PROVIDE IN THE FORM
         const { location, description, date } = req.body
 
@@ -58,27 +59,40 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
     try {
         console.log('in this route');
         // GET THE ID PROVIDED IN THE URL AND FIND THE CORRESPONDING SIGHTING
+        let isOwner = false;
         const thisSighting = await Sighting.findById(req.params.sightingId)
+        if (req.session.currentUser._id === thisSighting.owner.valueOf()) {
+            isOwner = true
+        }
         const comments = await Comment.find({ sighting: req.params.sightingId }).populate('author')
 
-        res.render('sighting/sighting-details', { thisSighting, comments })
+        res.render('sighting/sighting-details', { thisSighting, comments, isOwner })
     } catch (err) {
         next(err)
     }
 })
 
 // UPDATE WITH PATCH METHOD _______________________________________________________________________________________
-router.patch('/sightings/:sightingId', async (req, res, next) => {
-    const { ownerId } = req.params
-    const ownerIdToUpdate = { ...req.body }
+//router.patch('/sightings/:sightingId', async (req, res, next) => {
+//  const { ownerId } = req.params
+//const ownerIdToUpdate = { ...req.body }
+//try {
+//  await User.findByIdAndUpdate(ownerId, ownerIdToUpdate)
+//res.render({ message: `Updated: ${ownerId}` })
+//} catch (error) {
+//  next(err)
+//}
+//})
+
+//DELETE 
+router.post('/sightings/delete/:sightingId', canEdit, async (req, res, next) => {
     try {
-        await User.findByIdAndUpdate(ownerId, ownerIdToUpdate)
-        res.render({ message: `Updated: ${ownerId}` })
-    } catch (error) {
+        await Sighting.findByIdAndDelete(req.params.sightingId)
+        res.redirect('/sightings')
+
+    } catch (err) {
         next(err)
     }
 })
-
-
 
 module.exports = router;
