@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model')
 const bcrypt = require('bcryptjs')
+const fileUpload = require('../config/cloudinary.config')
 
 
 // CREATE ROUTE FOR LOGIN     GET
@@ -55,7 +56,7 @@ router.post('/login', async (req, res, next) => {
 
 
 // LISTEN FOR A POST FORM ON THE 'SIGN UP' ROUTE
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', fileUpload.single('user_picture_url'), async (req, res, next) => {
     const { password, username } = req.body
     try {
         if (!username || !password) {
@@ -73,6 +74,7 @@ router.post('/signup', async (req, res, next) => {
         const userToCreate = {
             username,
             password: hashedPassword,
+            user_picture_url: req.file.path,
         }
         const userFromDb = await User.create(userToCreate);
         res.redirect('/login')
