@@ -3,7 +3,8 @@ const exposeUsers = require('../middleware/exposeUserToView');
 const isLogin = require('../middleware/isLogin');
 const router = express.Router();
 const Sighting = require('../models/Sighting.model')
-const Comment = require('../models/Comment.model')
+const Comment = require('../models/Comment.model');
+const User = require('../models/User.model');
 
 
 
@@ -66,8 +67,17 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
     }
 })
 
-
-
+// UPDATE WITH PATCH METHOD _______________________________________________________________________________________
+router.patch('/sightings/:sightingId', async (req, res, next) => {
+    const { ownerId } = req.params
+    const ownerIdToUpdate = { ...req.body }
+    try {
+        await User.findByIdAndUpdate(ownerId, ownerIdToUpdate)
+        res.render({ message: `Updated: ${ownerId}` })
+    } catch (error) {
+        next(err)
+    }
+})
 
 
 
