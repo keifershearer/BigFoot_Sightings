@@ -4,3 +4,10 @@
 <h3>{{thisSighting.location}}</h3>
 <p>{{thisSighting.date}}</p>
 <p>{{thisSighting.description}}</p>
+
+{{#each comments}}
+
+<h5 class="author-of-comment">{{author.username}}</h5>
+<p class="comment">{{content}}</p>
+
+{{/each}}
