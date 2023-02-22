@@ -6,6 +6,8 @@ const Sighting = require('../models/Sighting.model')
 const Comment = require('../models/Comment.model');
 const User = require('../models/User.model');
 const canEdit = require('../middleware/edit');
+const fileUpload = require('../config/cloudinary.config')
+
 
 
 
