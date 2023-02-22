@@ -73,6 +73,18 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
     }
 })
 
+// CREATE ROUTE FOR POSTING COMMENTS TO A SPECIFIC SIGTHING
+router.post('/sightings/:sightingId', async (req, res, next) => {
+    try {
+        const commentContent = req.body
+        await Comment.create(commentContent)
+
+        res.redirect('/sightings/:sightingId')
+    } catch (err) {
+        next(err)
+    }
+})
+
 
 // CREATE THE ROUTE FOR DISPLAYING THE UPDATE FILE TO USER
 router.get('/sightings/update/:sightingId', canEdit, async (req, res, next) => {
