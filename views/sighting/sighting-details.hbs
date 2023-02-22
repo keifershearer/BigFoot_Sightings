@@ -4,12 +4,16 @@
 <h3>{{thisSighting.location}}</h3>
 <p>{{thisSighting.date}}</p>
 <p>{{thisSighting.description}}</p>
+
 {{#if isOwner}}
 <form action="/sightings/delete/{{thisSighting._id}}" method="post">
-    <button class="edit">Delete</button>
+    <button class="button">Delete</button>
 </form>
-
+<form action="/sightings/update/{{thisSighting._id}}" method="post">
+    <button class="button">Update</button>
+</form>
 {{/if}}
+
 {{#each comments}}
 
 <h5 class="author-of-comment">{{author.username}}</h5>
