@@ -57,7 +57,6 @@ router.post('/sightings/create', isLogin, async (req, res, next) => {
 // RENDER A SPECIFIC SIGHTING WITH THE PROVIDED ID IN THE URL ———————————————————————————————————————————————————
 router.get('/sightings/:sightingId', async (req, res, next) => {
     try {
-        console.log('in this route');
         // GET THE ID PROVIDED IN THE URL AND FIND THE CORRESPONDING SIGHTING
         let isOwner = false;
         const thisSighting = await Sighting.findById(req.params.sightingId)
@@ -72,17 +71,31 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
     }
 })
 
+
+// CREATE THE ROUTE FOR DISPLAYING THE UPDATE FILE TO USER
+router.get('/sightings/update/:sightingId', canEdit, (req, res, next) => {
+    try {
+        res.render('sighting/update-sighting')
+    } catch (err) {
+        next(err)
+    }
+})
+
+
 // UPDATE WITH PATCH METHOD _______________________________________________________________________________________
-//router.patch('/sightings/:sightingId', async (req, res, next) => {
-//  const { ownerId } = req.params
-//const ownerIdToUpdate = { ...req.body }
-//try {
-//  await User.findByIdAndUpdate(ownerId, ownerIdToUpdate)
-//res.render({ message: `Updated: ${ownerId}` })
-//} catch (error) {
-//  next(err)
-//}
-//})
+router.patch('/sightings/update/:sightingId', canEdit, async (req, res, next) => {
+
+    const oldSighting = req.params
+    const newSighting = { ...req.body }
+
+    try {
+        await User.findByIdAndUpdate(oldSighting, newSighting)
+        res.redirect('/sightings')
+
+    } catch (error) {
+        next(err)
+    }
+})
 
 //DELETE 
 router.post('/sightings/delete/:sightingId', canEdit, async (req, res, next) => {
