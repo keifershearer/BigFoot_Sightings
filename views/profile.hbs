@@ -1,11 +1,11 @@
 <h1>{{user.username}}'s Profile</h1>
-
+<img src="{{user.user_picture_url}}" alt="User Picture">
 <section class="profile-section-sightings">
 
 {{#each sightings}}
 
 <div class="card">
-    {{!-- <picture></picture> --}}
+    <img src="{{sigthing_picture_url}}" alt="Sigthings picture">
     <h4 class="location">{{location}}</h4>
     <p class="profil-date-sightings">{{date}}</p>
     <p class="profil-description-sightings">{{description}}</p>

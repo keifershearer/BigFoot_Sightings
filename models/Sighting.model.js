@@ -17,6 +17,7 @@ const sightingSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    sighting_picture_url: String,
 },
     {
         timestamps: true

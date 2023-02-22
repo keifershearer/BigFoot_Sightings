@@ -35,14 +35,14 @@ router.get('/sightings/create', async (req, res, next) => {
 
 
 // LISTEN FOR A FORM ON THE CREATE SIGHTING PAGE  ——————————————————————————————————————————————————————————————————
-router.post('/sightings/create', isLogin, async (req, res, next) => {
+router.post('/sightings/create', fileUpload.single('sighting_picture_url'), isLogin, async (req, res, next) => {
     try {
         // console.log(req.session);
         // ACCES INFORMATION USER JUST PROVIDE IN THE FORM
         const { location, description, date } = req.body
 
         // CREATE THE SIGHTING WIHT THE INFORMATION WITH JUST ACCESS
-        await Sighting.create({ location, description, date, owner: req.session.currentUser._id })
+        await Sighting.create({ location, description, date, owner: req.session.currentUser._id, sighting_picture_url: req.file.path })
         res.redirect('/sightings')
     } catch (err) {
         next(err)
