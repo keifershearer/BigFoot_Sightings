@@ -1,9 +1,19 @@
-<h1>Sightings page</h1>
+<section id="allSightings">
+<header id="title-page">
+    <h1>Sightings</h1>
+</header>
 
-{{#each allSightings}}
-<h3>{{location}}</h3>
-<p>{{date}}</p>
-<p>{{description}}</p>
-<a href="/profile/{{owner._id}}">{{owner.username}} profile</a>
-<a href="/sightings/{{_id}}">View Details</a>
-{{/each}}
+    {{#each allSightings}}
+<section class="each-sightings">
+        <div class="details-sighting-card">
+            <h3>Location: {{location}}</h3>
+            <p>Date: {{date}}</p>
+            <p>Description: {{description}}</p>
+            <a href="/profile/{{owner._id}}">{{owner.username}} profile</a>
+            <a href="/sightings/{{_id}}">View Details</a>
+        </div>
+        <img src="{{sighting_picture_url}}" alt="sighting photo" class="">
+
+</section>
+    {{/each}}
+</section>

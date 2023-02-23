@@ -1,4 +1,7 @@
 @import "profile.css";
+@import "home.css";
+@import "allSightings.css";
+@import "login.css";
 *{
   box-sizing: border-box;
   margin: 0;
@@ -18,8 +21,16 @@ h1 {
 }
 #navbar ul{
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding-top: 15px;
   display: flex;
- justify-content: space-around;
+  justify-content: space-around;
+  height: 50px;
+  background-color: rgb(42, 52, 44);
+}
+#navbar a{
+  text-decoration: none;
+  color: white;
+  font-family: 'Creepster', cursive;
+  font-size: 20px;
 }

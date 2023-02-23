@@ -9,7 +9,7 @@ const User = require('../models/User.model')
 router.get('/', async (req, res, next) => {
     try {
         const sightings = await Sighting.find({ owner: req.session.currentUser._id })
-        const user = req.session.currentUser
+        const user = await User.findById(req.session.currentUser._id)
         res.render('profile', { user, sightings })
 
     } catch (err) {

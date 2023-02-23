@@ -1,20 +1,26 @@
-{{#if errorMessage}}
-  <p class='error'>{{errorMessage}}</p>
-{{/if}}
-<form action='/signup' method='post'>
+<section class="auth-section">
+  {{#if errorMessage}}
+    <section class="error-section">
+      <p class='error'>{{errorMessage}}</p>
+    </section>
+  {{/if}}
+  <h1>Signup</h1>
+  <section class="auth-form-section">
+    <form action='/signup' method='post' enctype="multipart/form-data">
+    
+    <input type="file" name="user_picture_url" placeholder="Profile Image...">
+  
 
-  <div>
-    <input type="file" name="user_picture_url">
-    <img src="user_picture_url" alt="Profil Picture">
-    <label for='username'>Username: </label>
-    <input type='text' id='username' name='username' placeholder='Username:' />
-  </div>
-  <div>
-    <label for='password'>Password: </label>
-    <input type='password' required id='password' name='password' />
-  </div>
-  <button>Login</button>
+    <input type='text' id='username' name='username' placeholder='Username...' />
 
-  <p>Already have a account <a href='/login'>Login!</a></p>
+    
+    <input type='password' required id='password' name='password' placeholder="Password..."/>
+
+    <button>Create Account</button>
+    <p>OR</p>
+
+    <a href='/login'>Login!</a>
 
 </form>
+</section>
+</section>
