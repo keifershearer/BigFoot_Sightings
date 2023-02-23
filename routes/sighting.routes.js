@@ -37,14 +37,15 @@ router.get('/sightings/create', async (req, res, next) => {
 
 
 // LISTEN FOR A FORM ON THE CREATE SIGHTING PAGE  ——————————————————————————————————————————————————————————————————
-router.post('/sightings/create', fileUpload.single('sighting_picture_url'), isLogin, async (req, res, next) => {
+router.post('/sightings/create', isLogin, fileUpload.single('sighting_picture_url'), async (req, res, next) => {
     try {
         // console.log(req.session);
         // ACCES INFORMATION USER JUST PROVIDE IN THE FORM
         const { location, description, date } = req.body
+        console.log(req.file);
 
         // CREATE THE SIGHTING WIHT THE INFORMATION WITH JUST ACCESS
-        await Sighting.create({ location, description, date, owner: req.session.currentUser._id, sighting_picture_url: req.file.path })
+        await Sighting.create({ location, description, date, owner: req.session.currentUser._id, sighting_picture_url: req.file?.path })
         res.redirect('/sightings')
     } catch (err) {
         next(err)
@@ -76,10 +77,10 @@ router.get('/sightings/:sightingId', async (req, res, next) => {
 // CREATE ROUTE FOR POSTING COMMENTS TO A SPECIFIC SIGTHING
 router.post('/sightings/:sightingId', async (req, res, next) => {
     try {
-        const commentContent = req.body
-        await Comment.create(commentContent)
+        const commentContent = req.body.content
+        await Comment.create({ author: req.session.currentUser._id, sighting: req.params.sightingId, content: commentContent })
 
-        res.redirect('/sightings/:sightingId')
+        res.redirect('/sightings/' + req.params.sightingId)
     } catch (err) {
         next(err)
     }
