@@ -1,0 +1,49 @@
+#allSightings{
+        background: url(./../images/2mdd_v2_480.jpg);
+        background-size:100%;
+        background-repeat: repeat-y;
+        background-attachment: fixed;
+        height:100%;
+        width:100%;
+        overflow: hidden;
+    }
+#title-page {
+    display: flex;
+    justify-content: center;
+    height: 3rem;
+    width: 100vw;
+    margin-bottom: 2.5rem;
+    font-family: 'Creepster', cursive;
+    font-size:35px;
+    color: white;
+    padding: 2rem;
+    text-shadow: rgb(128, 126, 126) 5px 0 3px;
+}
+  .each-sightings{
+    height: 11rem;
+    width: 97%;
+    border: 0.5rem grey;
+    margin: 1rem 0 1rem;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 15px;
+    background-color: rgba(255, 255, 255, 0.327);
+
+  }
+  .details-sighting-card{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: 11rem;
+    width: 60%;
+    margin-top: 1rem;
+    font-size: 20px;
+    background: none;
+    color: black;
+  }
+  .each-sightings img{
+    width: 150px;
+    height: 150px;
+    margin-top: 5px;
+    border-radius: 2%;
+  }

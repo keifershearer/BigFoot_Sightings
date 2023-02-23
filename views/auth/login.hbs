@@ -1,18 +1,24 @@
-{{#if errorMessage}}
-  <p class='error'>{{errorMessage}}</p>
-{{/if}}
-<form action='/login' method='post'>
+<section class="auth-section">
+  {{#if errorMessage}}
+  <section class="error-section">
+    <p class='error'>{{errorMessage}}</p>
+  </section>
+  {{/if}}
+  <h1>Login</h1>
+  <section class="auth-form-section">
+    <form action='/login' method='post'>
 
-  <div>
-    <label for='username'>Username: </label>
-    <input type='text' id='username' name='username' placeholder='Username:' />
-  </div>
-  <div>
-    <label for='password'>Password: </label>
-    <input type='password' required id='password' name='password' />
-  </div>
-  <button>Login</button>
+    
+     <input type='text' id='username' name='username' placeholder='Username...' />
 
-  <p>Need an account? <a href='/signup'>Sign up!</a></p>
+      <input type='password' required id='password' name='password' placeholder="Password..."/>
+    
+    <button>Login</button>
+
+    <p>OR</p>
+
+    <a href='/signup'>Sign up!</a>
 
 </form>
+</section>
+</section>
