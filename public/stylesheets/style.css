@@ -2,6 +2,8 @@
 @import "home.css";
 @import "allSightings.css";
 @import "login.css";
+@import "sightingDetails.css";
+@import "createSighting.css";
 *{
   box-sizing: border-box;
   margin: 0;

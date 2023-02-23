@@ -1,12 +1,15 @@
-<form action="/sightings/create" method="post" enctype="multipart/form-data">
-<h1>Create A Sighting</h1>
-<input type="file" name="sighting_picture_url">
-    
-<label for="location">Location:</label>
-<input type="text" name="location">
-<label for="description">Description:</label>
-<input type="text" name="description">
-<label for="date" >Date:</label>
-<input type="date" name="date">
-<button>Submit Post</button>
-</form>
+<section id="create-sighting-section">
+    <h1>Create A Sighting</h1>
+    <section id="create-sighting-form" class="form-button">
+        <form action="/sightings/create" method="post" enctype="multipart/form-data">
+            <input type="file" name="sighting_picture_url">
+            <input type="text" name="location" placeholder="Location...">
+            <input type="text" name="description" placeholder="Description...">
+            <label for="date" >Date:</label>
+            <input type="date" name="date">
+            <div id="create-sighting-form-button-container">
+                <button>Submit Post</button>
+            </div>
+        </form>
+    </section>
+</section>
