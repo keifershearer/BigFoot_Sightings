@@ -1,6 +1,12 @@
+@import "profile.css";
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
 }
 
 a {
@@ -9,4 +15,11 @@ a {
 
 h1 {
   color: 15px;
+}
+#navbar ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+ justify-content: space-around;
 }
