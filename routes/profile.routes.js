@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
         const user = req.session.currentUser
         res.render('profile', { user, sightings })
 
-    } catch (error) {
+    } catch (err) {
         next(err)
     }
 })
