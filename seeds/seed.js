@@ -1,4 +1,4 @@
-require('dotenv')
+require('dotenv').config()
 require('./../db')
 const User = require('./../models/User.model')
 const Sighting = require('./../models/Sighting.model')
@@ -45,9 +45,11 @@ async function seed() {
     for (const sight of sightings) {
         sight.owner = randomUser(createdUsers)
     }
+    console.log(createdUsers);
     await Sighting.create(sightings)
     // erase me if there is a problem
-    await Sighting.create(comments)
+    // await Sighting.create(comments)
+    process.exit()
 }
 
 function randomUser(array) {
