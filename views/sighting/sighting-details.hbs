@@ -3,7 +3,7 @@
 
     <div id="sighting-details">
         <h3>Location: {{thisSighting.location}}</h3>
-        <p>Date: {{thisSighting.date}}</p>
+        <p>Date: {{dateFormat thisSighting.date 'dddd, Do MMMM YYYY'}}</p>
         <p>Description: {{thisSighting.description}}</p>
         <img src="{{thisSighting.sighting_picture_url}}" alt="">
     </div>

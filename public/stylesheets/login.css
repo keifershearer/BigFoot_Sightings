@@ -28,6 +28,14 @@
     justify-content: center;
     align-items: center;
   }
+  .auth-form-section label{
+    display: flex;
+    justify-content: start;
+    color: white;
+    font-size: 20px;
+    width: 650px;
+    margin-bottom: -.5rem;
+  }
   .auth-form-section input {
     height: 3rem;
     width: 70vw;
