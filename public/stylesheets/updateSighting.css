@@ -1,0 +1,26 @@
+#update-sighting{
+    background-image: radial-gradient(circle, rgb(63, 70, 64) 0%, rgb(34, 39, 32) 67%);
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Creepster', cursive;
+}
+#update-sighting h1{
+    text-align: center;
+    color: #ffffff;
+    font-size: 50px;
+    padding-top: 150px;
+}
+#update-form-container{
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+#update-form-container input{
+    font-size: 20px;font-family: 'Creepster', cursive;
+    width: 300px;
+}
+#update-form-container button{
+    border: #ffffff solid ;
+    color:rgb(42, 52, 44);
+    font-size: 20px;
+}

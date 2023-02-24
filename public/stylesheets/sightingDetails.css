@@ -1,0 +1,84 @@
+.sighting-details-page{
+    background: radial-gradient(circle, rgb(63, 70, 64) 0%, rgb(34, 39, 32) 67%);
+    height: 100vh;
+    width: 100%;
+    font-family: 'Creepster', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sighting-details-page h1{
+    font-size: 40px;
+    color: white;
+    padding: 50px 25px 25px 10px;
+    text-align: center;
+    text-decoration: underline;
+}
+#sighting-details{
+    padding: 25px 25px 25px 25px;
+    font-size: 20px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.531);
+    margin-top: 1rem;
+}
+#sighting-details img{
+    max-width: 500px;
+    max-height: 300px;
+}
+#comment-form{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+#update-delete{
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    width: 600px;
+    margin: 1rem;
+}
+#update-delete button{
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.531);
+    color: rgb(42, 52, 44);
+    border: none;
+}
+#update-delete a{
+    text-decoration: none;
+    color: rgb(42, 52, 44)
+}
+#comment-form button{
+    background-color: white;
+    border: none;
+    font-size: 1rem;
+    color: rgb(42, 52, 44);
+    margin: 1rem;
+    display: inline-block;
+    height: 2.5rem;
+}
+#comment-form textarea{
+    font-family: 'Creepster', cursive;
+    display: inline-block;
+    margin-bottom:-12px;
+}
+#each-comment-section {
+    display: flex;
+    align-items: center;
+    border-radius: 2rem;
+    height: 2rem;
+    width: 45rem;
+    background-color: white;
+    margin: .5rem;
+  }
+  .author-of-comment {
+    display: flex;
+    margin: 0 0.1rem 0 0.7rem;
+    justify-self: flex-start;
+    font-size: 14px;
+  }
+  .comment {
+    display: flex;
+    justify-content: flex-start;
+    margin: 1rem;
+    width: 35rem;
+  }

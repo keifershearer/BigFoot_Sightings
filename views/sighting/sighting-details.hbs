@@ -1,29 +1,33 @@
-<h1>Sightings Details page</h1>
+<section class="sighting-details-page">
+    <h1>Sightings Details</h1>
 
+    <div id="sighting-details">
+        <h3>Location: {{thisSighting.location}}</h3>
+        <p>Date: {{thisSighting.date}}</p>
+        <p>Description: {{thisSighting.description}}</p>
+        <img src="{{thisSighting.sighting_picture_url}}" alt="">
+    </div>
+    {{#if isOwner}}
+    <section id="update-delete">
+        <form action="/sightings/delete/{{thisSighting._id}}" method="post">
+            <button class="button">Delete</button>
+        </form>
 
-<h3>{{thisSighting.location}}</h3>
-<p>{{thisSighting.date}}</p>
-<p>{{thisSighting.description}}</p>
-<img src="{{thisSighting.sighting_picture_url}}" alt="">
-
-{{#if isOwner}}
-<form action="/sightings/delete/{{thisSighting._id}}" method="post">
-    <button class="button">Delete</button>
-</form>
-
-    <button class="button"> <a href="/sightings/update/{{thisSighting._id}}">Update</a> </button>
-
-{{/if}}
-
-<form action="/sightings/{{thisSighting._id}}" class="comment-form" method="post">
-<label for="content">Leave a comment</label>
-<textarea name="content" id="content" cols="10" rows="10"></textarea>
-<button type="submit" class="submit-comment">Send comment</button>
-</form>
-
+        <button class="button"> <a href="/sightings/update/{{thisSighting._id}}">Update</a> </button>
+    </section>
+    {{/if}}
+    <div id="comment-form">
+        <form action="/sightings/{{thisSighting._id}}" method="post">
+            <textarea name="content" id="content" cols="70" rows="2" placeholder="Leave a comment..."></textarea>
+            <button type="submit" class="submit-comment">Send comment</button>
+        </form>
+    </div>
 {{#each comments}}
+<section id="each-comment-section">
 
-<h5 class="author-of-comment">{{author.username}}</h5>
-<p class="comment">{{content}}</p>
+<h5 class="author-of-comment">{{author.username}}:</h5>
+<p class="comment">     {{content}}</p>
 
+</section>
 {{/each}}
+</section>
